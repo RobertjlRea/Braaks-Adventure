@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-
+using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Movement
 {
     public class Mover : MonoBehaviour
     {
-        [SerializeField] Transform taret;
+        
 
         NavMeshAgent navMeshAgent;
+
 
         private void Start()
         {
@@ -27,6 +28,17 @@ namespace RPG.Movement
             UpdateAnimator();
 
         }
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            GetComponent<ActionScheduler>().StartAction(this);
+            GetComponent<Fighter>().Cancel();
+            MoveTo(destination);
+
+        }
+
+
+
         public void Stop()
         {
             navMeshAgent.isStopped = true;

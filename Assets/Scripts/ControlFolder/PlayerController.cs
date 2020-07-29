@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using RPG.Movement;
 using System;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Control
 {
@@ -15,11 +16,9 @@ namespace RPG.Control
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
 
-            print("Nothing to do");
+           
 
         }
-
-
         private bool InteractWithCombat()
         {
           RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
@@ -34,6 +33,7 @@ namespace RPG.Control
                 }
                 return true;
             }
+            
             return false;
         }
 
@@ -48,7 +48,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hit.point);
+                    GetComponent<Mover>().StartMoveAction(hit.point);
                 }
                 return true;
             }
