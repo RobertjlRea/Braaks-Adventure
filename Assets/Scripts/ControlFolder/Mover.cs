@@ -11,6 +11,14 @@ namespace RPG.Movement
 {
     public class Mover : MonoBehaviour
     {
+        [SerializeField] Transform taret;
+
+        NavMeshAgent navMeshAgent;
+
+        private void Start()
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
 
         // Start is called before the first frame update
 
@@ -19,15 +27,19 @@ namespace RPG.Movement
             UpdateAnimator();
 
         }
-
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
+        }
         public void MoveTo(Vector3 destination)
         {
-            GetComponent<NavMeshAgent>().destination = destination;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
         }
 
         private void UpdateAnimator()
         {
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = navMeshAgent.velocity;
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
 
             float speed = localVelocity.z;

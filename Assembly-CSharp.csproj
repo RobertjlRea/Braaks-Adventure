@@ -65,9 +65,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Combat\CombatTarget.cs" />
     <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
+    <Compile Include="Assets\Scripts\ControlFolder\FollowCamera.cs" />
+    <Compile Include="Assets\Scripts\ControlFolder\Mover.cs" />
     <Compile Include="Assets\Scripts\ControlFolder\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\FollowCamera.cs" />
-    <Compile Include="Assets\Scripts\Mover.cs" />
     <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
