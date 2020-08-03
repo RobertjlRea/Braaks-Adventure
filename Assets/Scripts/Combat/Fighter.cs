@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using System.Security.Cryptography;
-using System.Security.AccessControl;
 
 namespace RPG.Combat
 {
@@ -16,7 +14,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
 
         Health target;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = MathF.Infinity;
 
         private void Update()
         {
@@ -32,15 +30,16 @@ namespace RPG.Combat
             }
             else
             {
-
-                AttackBehaviour();
                 GetComponent<Mover>().Cancel();
+                AttackBehaviour();
+                
             }
 
         }
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
+            
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 //Will trigger Hit() event.
@@ -68,17 +67,19 @@ namespace RPG.Combat
           return Vector3.Distance(transform.position, target.transform.position) < meleeRange;
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
+            
+            
 
         }
 
