@@ -23,6 +23,7 @@ namespace RPG.Core
                 Die();
                 
             }
+
         }
 
         private void Die()
