@@ -16,15 +16,17 @@ public class Portal : MonoBehaviour
     [SerializeField] int SceneToLoad = -1;
     [SerializeField] Transform spawnPoint;
     [SerializeField] DestinationIdentifier Destination;
+    [SerializeField] float fadeOutTime = 1f;
+    [SerializeField] float fadeWaitTime = 0.5f;
+    [SerializeField] float fadeInTime = 2f;
+
   private void OnTriggerEnter(Collider other)
    {
         if (other.tag == "Player")
         {
          StartCoroutine(Transition());
         
-        }
-
-        
+        }    
   }
     private IEnumerator Transition()
     {
@@ -34,10 +36,17 @@ public class Portal : MonoBehaviour
          yield break;
       }
       DontDestroyOnLoad(gameObject);
+
+      Fader fader = FindObjectOfType<Fader>();
+
+      yield return fader.FadeOut(fadeOutTime);
       yield return SceneManager.LoadSceneAsync(SceneToLoad);
 
       Portal otherPortal = GetOtherPortal();
       UpdatePlayer(otherPortal);
+
+      yield return new WaitForSeconds(fadeWaitTime);
+      yield return fader.FadeIn(fadeInTime);
       
       Destroy(gameObject);
     }
@@ -47,6 +56,8 @@ public class Portal : MonoBehaviour
          GameObject player = GameObject.FindWithTag("Player");
          
          
+         player.transform.position = otherPortal.spawnPoint.position;
+         player.transform.rotation = otherPortal.spawnPoint.rotation;
 
        }
 

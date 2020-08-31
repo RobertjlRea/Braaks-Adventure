@@ -95,6 +95,11 @@
      <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
      <Compile Include="Assets\Scripts\Core\Health.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
+     <Compile Include="Assets\Scripts\Core\PersistantObjectSpawner.cs" />
+     <Compile Include="Assets\Scripts\Saving\SavingSystem.cs" />
+     <Compile Include="Assets\Scripts\Saving\SavingWrapper.cs" />
+     <Compile Include="Assets\Scripts\Saving\SerializeVector3.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\Fader.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
      <None Include="Assets\RPG Character Animation Pack FREE\Elements\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
