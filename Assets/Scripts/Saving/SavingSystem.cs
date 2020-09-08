@@ -1,5 +1,6 @@
 using System.IO;
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -13,10 +14,9 @@ public class SavingSystem : MonoBehaviour
      print ("Saving to " + path);
      using (FileStream stream = File.Open(path, FileMode.Create))
      {
-        Transform playerTransform =  GetPlayerTransform();
+        
         BinaryFormatter formatter = new BinaryFormatter();
-        SerializeableVector3 position = new SerializeableVector3(playerTransform.position);
-        formatter.Serialize(stream, position);
+        formatter.Serialize(stream, CaptureState());
 
      }
  }
@@ -27,22 +27,31 @@ public class SavingSystem : MonoBehaviour
      print ("Loading from " + GetPathFromSaveFile(saveFile));
      using (FileStream stream = File.Open(path, FileMode.Open))
      {
-         byte[] buffer = new byte[stream.Length];
-         stream.Read(buffer, 0, buffer.Length);
-
-        Transform playerTransform =  GetPlayerTransform();
         BinaryFormatter formatter = new BinaryFormatter();
-        SerializeableVector3 position = (SerializableVector3)formatter.Deserialize(stream);
-        playerTransform.position = position.ToVector();
-     
+        RestoreState(formatter.Deserialize(stream));
      }
   }
 
-  private Transform GetPlayerTransform()
+   private object CaptureState()
   {
-      return GameObject.FindWithTag("Player").transform;
+      Dictionary<string, object> state = new Dictionary<string, object>();
+      foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+      {
+          state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
+         
+      }
+      return state;
   }
-private byte[] SerializeVector(Vector3 vector)
+  
+  private void RestoreState(object state)
+  {
+      Dictionary<string, object> stateDict = (Dictionary<string, object>)state;
+      foreach(SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+      {
+          saveable.RestoreState(stateDict[saveable.GetUniqueIdentifier()]);
+      }
+  }
+  private byte[] SerializeVector(Vector3 vector)
 {
  byte [] vectorBytes = new byte[3 * 4];
  BitConverter.GetBytes(vector.x).CopyTo(vectorBytes, 0);
