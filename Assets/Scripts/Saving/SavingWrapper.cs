@@ -10,14 +10,25 @@ public class SavingWrapper : MonoBehaviour
      {
          if (Input.GetKeyDown(KeyCode.F3))
          {
-            GetComponent<SavingSystem>().Save(defaultSaveFile);
+            Save();
          }
         
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            GetComponent<SavingSystem>().Load(defaultSaveFile);
+            Load();
         }
 
+     }
+
+     public void Save()
+     {
+        GetComponent<SavingSystem>().Save(defaultSaveFile);
+        
+     }
+
+     public void Load()
+     {
+        GetComponent<SavingSystem>().Load(defaultSaveFile);
      }
 }
 }

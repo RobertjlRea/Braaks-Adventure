@@ -96,6 +96,7 @@
      <Compile Include="Assets\Scripts\Core\Health.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
      <Compile Include="Assets\Scripts\Core\PersistantObjectSpawner.cs" />
+     <Compile Include="Assets\Scripts\Saving\ISaveable.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveableEntity.cs" />
      <Compile Include="Assets\Scripts\Saving\SavingSystem.cs" />
      <Compile Include="Assets\Scripts\Saving\SavingWrapper.cs" />
