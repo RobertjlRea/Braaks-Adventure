@@ -16,6 +16,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2111085276263502589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751923653757045855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454e569698275cb4aa8c9d24d9f5002b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startinglevel: 1
+  characterClass: 1
+  Progression: {fileID: 11400000, guid: 88c73c7226d382f4e8d33c9072194dd2, type: 2}
 --- !u!1001 &3405948429888898999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 6210824786563877864, guid: d16ecbcdd52df214881d69af7e740af8,
         type: 3}
       propertyPath: m_Name
-      value: Enemy (5)
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6210824786563877864, guid: d16ecbcdd52df214881d69af7e740af8,
         type: 3}
@@ -134,7 +149,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b238e1a9dc48da5479327e05c9582dd7,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6853646551523953953, guid: d16ecbcdd52df214881d69af7e740af8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d16ecbcdd52df214881d69af7e740af8, type: 3}
 --- !u!1 &8751923653757045855 stripped
 GameObject:

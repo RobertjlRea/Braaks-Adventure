@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
+using RPG.Resources;
 using System;
+
 
 namespace RPG.Combat
 {
 
 
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
 
         
@@ -15,14 +18,18 @@ namespace RPG.Combat
         [SerializeField] Weapon defaultWeapon = null;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
+
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         Weapon currentWeapon = null;
 
 
-        private void start()
-        {
+        private void Start()
+        {            
+            if (currentWeapon == null)
+            {
             EquipWeapon(defaultWeapon);
+            }
         }
 
       
@@ -55,6 +62,11 @@ namespace RPG.Combat
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
+        public Health GetTarget()
+        {
+            return target;
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
@@ -81,11 +93,11 @@ namespace RPG.Combat
 
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
             }
             else
             {
-            target.TakeDamage(currentWeapon.GetDamage());
+            target.TakeDamage(gameObject,currentWeapon.GetDamage());
             }
         }
 
@@ -115,10 +127,7 @@ namespace RPG.Combat
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();
-            
-            
-
+            target = combatTarget.GetComponent<Health>();     
         }
 
         public void Cancel()
@@ -134,5 +143,18 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
  
+    
+        public object CaptureState()
+        {
+        return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
+        }
     }
 }
+

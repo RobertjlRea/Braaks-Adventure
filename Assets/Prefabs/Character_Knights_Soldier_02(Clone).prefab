@@ -494,6 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3821285281014593008}
   - component: {fileID: 8846777923997526058}
+  - component: {fileID: 7549510166423758770}
   m_Layer: 0
   m_Name: Character_Soldier_02
   m_TagString: Untagged
@@ -615,6 +616,21 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000017881393, y: 0.8714234, z: -0.037485242}
     m_Extent: {x: 1.0256433, y: 0.97037476, z: 0.28788346}
   m_DirtyAABB: 0
+--- !u!114 &7549510166423758770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475034796660502499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454e569698275cb4aa8c9d24d9f5002b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startinglevel: 1
+  characterClass: 1
+  Progression: {fileID: 11400000, guid: 88c73c7226d382f4e8d33c9072194dd2, type: 2}
 --- !u!1 &2559022484737409353
 GameObject:
   m_ObjectHideFlags: 0
