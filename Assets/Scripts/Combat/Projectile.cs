@@ -41,6 +41,7 @@ public class Projectile : MonoBehaviour
         this.target = target;
         this.damage = damage;
         this.instigator = instigator;
+        
         Destroy(gameObject, MaxLifeTime);
     }
     private Vector3 GetAimLocation()

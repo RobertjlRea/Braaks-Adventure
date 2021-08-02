@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startinglevel: 1
   characterClass: 1
-  Progression: {fileID: 11400000, guid: 88c73c7226d382f4e8d33c9072194dd2, type: 2}
+  progression: {fileID: 11400000, guid: b9e41288c2d337d46b85a164c2275f2c, type: 2}
 --- !u!1001 &3405948429888898999
 PrefabInstance:
   m_ObjectHideFlags: 0
